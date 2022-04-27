@@ -1,10 +1,17 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { App } from 'components/App';
-import './index.css';
+import ReactDOM from 'react-dom';
+import { App } from './Components/App';
+import { GlobalStyle } from './GlobalStyle.styled';
+import '../node_modules/modern-normalize/modern-normalize.css';
+import { ThemeProvider } from '@emotion/react';
+import { theme } from './constants/theme';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <App />
+      <GlobalStyle />
+    </ThemeProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
