@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 import { nanoid } from 'nanoid';
 import { DataPerson, FormPerson, Sabmit, Label } from './Form.styled';
 import propTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/sliceContacts';
 
-export const Form = ({ chengeSabmit }) => {
+export const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch()
 
   // цикл первой загрузки компонента
   useEffect(() => {
@@ -39,7 +42,7 @@ export const Form = ({ chengeSabmit }) => {
   //внутрений метод сабмита обрабатывающий событие
   const formSubmit = event => {
     event.preventDefault();
-    chengeSabmit({ name, number });
+    dispatch(addContact({ name, numberTel: number, id: nanoid() }));
     reset();
   };
 
